@@ -1,0 +1,75 @@
+body {
+  background-color: #1a1a1a;
+}
+
+.Header {
+  text-align: center;
+  color: #ffffff;
+  background-color: #333333;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 50px;
+}
+
+.InputBar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.InputField {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.AddButton {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.AddButton:hover {
+  background-color: #555555;
+}
+
+.ButtonDivider {
+  display: flex;
+  justify-content: center;
+}
+
+.Graph {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.Buttons {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.Buttons:hover {
+  background-color: #555555;
+}
+
+.Graph {
+  padding: 20px;
+  border-radius: 10px;
+}
