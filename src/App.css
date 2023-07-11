@@ -11,7 +11,7 @@ li{
 }
 
 body{
-    background-color: #161616;
+    background-color: #16171c;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -55,7 +55,7 @@ input[type=number] {
 }
 
 .Dashboard .addweightbutton{
-    background-color: #3d51fa;
+    background-color: #1d89ef;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -64,17 +64,13 @@ input[type=number] {
     font-size: 16px;
 }
 
-.Dashboard .addweightbutton:hover{
-    background-color: #2b37a2;
-}
-
 .Dashboard .databuttondivider {
     display: flex;
     padding-left: 30%;
   }
 
 .Dashboard .databuttons{
-    background-color: #3d51fa;
+    background-color: #1d89ef;
     margin: 5px;
     color: #fff;
     padding: 10px 20px;
@@ -84,8 +80,9 @@ input[type=number] {
     font-size: 16px;
 }
 
-.Dashboard .databuttons:hover{
-    background-color: #2b37a2;
+.Dashboard .databuttons:hover,
+.Dashboard .addweightbutton:hover{
+    background-color: #196ebd;
 }
 
 
@@ -93,20 +90,250 @@ input[type=number] {
 
 /* #region ProgressTracker */
 
+.progresstracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.progresstracker .targetheader,
+.progresstracker .targetmin {
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.progresstracker .inputtargetweight,
+.progresstracker .inputmin {
+  width: 10%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #2a2a2a;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin: 5px auto;
+  text-align: center;
+  color: #ffffff;
+}
+
 /* #endregion ProgressTracker */
 
 /* #region WeightTable */
 
+.weighttable-container {
+    position: relative;
+    height: calc(100vh - 200px); /* Adjust the height as needed */
+    overflow-y: auto;
+  }
+  
+  .weighttable {
+    width: 100%;
+    color: #d6d6d6;
+  }
+  
+  .weighttable .table {
+    width: 100%;
+    text-align: left;
+  }
+  
+  
+  .weighttable .savebutton,
+  .weighttable .cancelbutton,
+  .weighttable .editbutton {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .weighttable .savebutton {
+    background-color: #1d89ef;
+    color: #fff;
+    border: none;
+  }
+  
+  .weighttable .cancelbutton {
+    background-color: #9a9a9a;
+    color: #fff;
+    border: none;
+    margin-left: 5px;
+  }
+  
+  .weighttable .editbutton {
+    background-color: #d6d6d6;
+    color: #161616;
+    border: none;
+  }
+  
+  .weighttable .editbutton:hover {
+    background-color: #bdbdbd;
+  }
+  
+  .weighttable .table th {
+    padding: 8px;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .weighttable .table td {
+    padding: 8px;
+    width: 100%; /* Set the width to 100% */
+    white-space: nowrap; /* Prevent line breaks */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
+  }
+  
+  .weighttable .table tr:nth-child(even) {
+    background-color: #2a2a2a;
+  }
+  
+  .weighttable .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .weighttable .table tbody {
+    display: block;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  
+  .weighttable .table tbody::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .weighttable .table tbody::-webkit-scrollbar-thumb {
+    background-color: #6b6b6b;
+    border-radius: 4px;
+  }
+  
+  .weighttable .table tbody::-webkit-scrollbar-thumb:hover {
+    background-color: #555555;
+  }
+  
+  .weighttable .table tbody::-webkit-scrollbar-track {
+    background-color: #2a2a2a;
+  }
+  
+  .weighttable .table tr:last-child {
+    margin-bottom: 10px;
+  }
+
 /* #endregion WeightTable */
 
 /* #region CalorieTable */
+
+.calorietable-container {
+  position: relative;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.calorietable {
+  width: 100%;
+  color: #d6d6d6;
+}
+
+.calorietable .table {
+  width: 100%;
+  text-align: left;
+}
+
+
+.calorietable .savebutton,
+.calorietable .cancelbutton,
+.calorietable .editbutton {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.calorietable .savebutton {
+  background-color: #1d89ef;
+  color: #fff;
+  border: none;
+}
+
+.calorietable .cancelbutton {
+  background-color: #9a9a9a;
+  color: #fff;
+  border: none;
+  margin-left: 5px;
+}
+
+.calorietable .editbutton {
+  background-color: #d6d6d6;
+  color: #161616;
+  border: none;
+}
+
+.calorietable .editbutton:hover {
+  background-color: #bdbdbd;
+}
+
+.calorietable .table th {
+  padding: 8px;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.calorietable .table td {
+  padding: 8px;
+  width: 100%; /* Set the width to 100% */
+  white-space: nowrap; /* Prevent line breaks */
+  overflow: hidden; /* Hide overflowing content */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
+}
+
+.calorietable .table tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+.calorietable .table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.calorietable .table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.calorietable .table tbody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.calorietable .table tbody::-webkit-scrollbar-thumb {
+  background-color: #6b6b6b;
+  border-radius: 4px;
+}
+
+.calorietable .table tbody::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
+}
+
+.calorietable .table tbody::-webkit-scrollbar-track {
+  background-color: #2a2a2a;
+}
+
+.calorietable .table tr:last-child {
+  margin-bottom: 10px;
+}
 
 /* #endregion CalorieTable */
 
 /* #region SideMenu */
 .side-menu{
     position: absolute;
-    background: #131313;
+    background: #1f2025;
     width: 250px;
     height: 100%;
     box-sizing: border-box;
@@ -129,7 +356,7 @@ input[type=number] {
 }
 
 .side-menu .main-menu .menu-item{
-    color: #9a9a9a;
+    color: #959dae;
     text-decoration: none;
     font-size: 15px;
     display: block;
@@ -139,11 +366,12 @@ input[type=number] {
 
 .side-menu .main-menu .menu-item:hover{
     background-color: #282828;
+    border-radius: 15px;
 }
 
 .side-menu .main-menu .menu-item.active{
-    background: #3d51fa;
-    border-radius: 5px;
+    background: #1d89ef;
+    border-radius: 15px;
     color: #fff;
 }
 

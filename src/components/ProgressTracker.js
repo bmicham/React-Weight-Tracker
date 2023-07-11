@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ApexCharts from "apexcharts";
 
 function useLocalStorage(key, initialValue) {
@@ -16,10 +16,14 @@ function useLocalStorage(key, initialValue) {
 
 const ProgressTracker = () => {
   const [savedWeights] = useLocalStorage("weights", []);
-  const target = 210;
+  const [savedCalories] = useLocalStorage("calories", []);
+  const [targetWeight, setTargetWeight] = useState(210);
+  const [minYAxis, setMinYAxis] = useState(170);
+  const chartWeightRef = useRef(null);
+  const chartCalorieRef = useRef(null);
 
   useEffect(() => {
-    const processedData = savedWeights.map((weight) => {
+    const processedWeightData = savedWeights.map((weight) => {
       const date = new Date(weight.name);
       return [date, weight.weight];
     });
@@ -28,23 +32,25 @@ const ProgressTracker = () => {
       series: [
         {
           name: "Weight",
-          data: processedData,
+          data: processedWeightData,
         },
       ],
       stroke: {
-        curve: 'smooth',
+        curve: "smooth",
+        width: "4",
+        colors: "#1d89ef",
       },
       chart: {
         type: "line",
-        height: 750,
+        height: 375,
       },
       xaxis: {
         type: "datetime",
         labels: {
           show: true,
           style: {
-            fontSize: "16px", // Increase the font size
-            color: "#fff", // Set the color to white
+            fontSize: "16px",
+            color: "#fff",
           },
           datetimeFormatter: {
             month: "MMM",
@@ -55,12 +61,12 @@ const ProgressTracker = () => {
         },
       },
       yaxis: {
-        min: 170,
-        max: 215,
+        min: minYAxis, // Use the minYAxis state value
+        max: targetWeight + 5,
         labels: {
           style: {
-            fontSize: "16px", // Increase the font size
-            color: "#fff", // Set the color to white
+            fontSize: "16px",
+            color: "#fff",
           },
         },
         axisTicks: {
@@ -71,39 +77,120 @@ const ProgressTracker = () => {
         },
       },
       grid: {
-        show: false, // Remove the y-axis gridlines
+        show: false,
       },
       annotations: {
         yaxis: [
           {
-            y: target,
-            borderColor: 'red',
+            y: targetWeight, // Use the targetWeight state value
+            borderColor: "red",
             label: {
-              borderColor: 'red',
+              borderColor: "red",
               style: {
-                color: '#fff',
-                background: 'red'
+                color: "#fff",
+                background: "red",
               },
-              text: 'Target Weight'
-            }
-          }
+              text: "Target Weight",
+            },
+          },
         ],
       },
       legend: {
-        position: 'top',
-        horizontalAlign: 'center',
+        position: "top",
+        horizontalAlign: "center",
       },
-    }
-
-    const chart = new ApexCharts(document.getElementById("chart"), chartOptions);
-    chart.render();
-
-    return () => {
-      chart.destroy();
     };
-  }, [savedWeights]);
 
-  return <div id="chart" />;
+    chartWeightRef.current = new ApexCharts(document.getElementById("weight-chart"), chartOptions);
+    chartWeightRef.current.render();
+    return () => {
+      chartWeightRef.current.destroy();
+    };
+  }, [savedWeights, targetWeight, minYAxis]);
+
+  useEffect(() => {
+    const processedCalorieData = savedCalories.map((calories) => {
+      const date = new Date(calories.name);
+      return [date, calories.calories];
+    });
+
+    const chartCalorieOptions = {
+      series: [
+        {
+          name: "Calories",
+          data: processedCalorieData,
+        },
+      ],
+      stroke: {
+        curve: "smooth",
+        width: "4",
+        colors: "#1d89ef",
+      },
+      chart: {
+        type: "line",
+        height: 375,
+      },
+      xaxis: {
+        type: "datetime",
+        labels: {
+          show: true,
+          style: {
+            fontSize: "16px",
+            color: "#fff",
+          },
+          datetimeFormatter: {
+            month: "MMM",
+          },
+        },
+        tooltip: {
+          enabled: false,
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            fontSize: "16px",
+            color: "#fff",
+          },
+        },
+        axisTicks: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+      },
+      grid: {
+        show: false,
+      },
+      legend: {
+        position: "top",
+        horizontalAlign: "center",
+      },
+    };
+
+    chartCalorieRef.current = new ApexCharts(document.getElementById("calorie-chart"), chartCalorieOptions);
+    chartCalorieRef.current.render();
+    return () => {
+      chartCalorieRef.current.destroy();
+    };
+  },
+  [savedCalories]);
+
+  
+
+  return (
+    <div>
+      <div id="weight-chart" />
+      <div id="calorie-chart" />
+      <div className="progresstracker">
+        <h2 className="targetheader">Target Weight:</h2>
+        <input className="inputtargetweight" type="number" value={targetWeight} onChange={(e) => setTargetWeight(parseInt(e.target.value))} placeholder="Target Weight"/>
+        <h2 className="targetmin">Minimum Weight Graph Value:</h2>
+        <input className="inputmin" type="number" value={minYAxis} onChange={(e) => setMinYAxis(parseInt(e.target.value))} placeholder="Min Y-Axis"/>
+      </div>
+    </div>
+  );
 };
 
 export default ProgressTracker;

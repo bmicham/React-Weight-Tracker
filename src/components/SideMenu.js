@@ -18,8 +18,8 @@ export const menuItems = [
     iconClassName: "bi bi-text-center",
   },
   { name: "Progress Tracker", to: `/Progress-Tracker`, iconClassName: "bi bi-graph-up" },
-  { name: "Weight Table", to: `/Weight-Table`, iconClassName: "bi bi-calendar-fill" },
-  { name: "Calorie Table", to: `/Calorie-Table`, iconClassName: "bi bi-calendar-fill" },
+  { name: "Weight Table", to: `/Weight-Table`, iconClassName: "bi bi-calendar3" },
+  { name: "Calorie Table", to: `/Calorie-Table`, iconClassName: "bi bi-calendar-day" },
 ];
 
 const SideMenu = (props) => {
