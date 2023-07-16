@@ -1,6 +1,7 @@
 TODO: Update Readme, change screenshot, finish calorie and table edit features
 
-# ![Weight_tracker](https://github.com/bmicham/React-Weight-Tracker/assets/60907784/f7de4378-aa56-4d0a-81d6-dd6d25a2a8f6)
+![Preview](https://github.com/bmicham/React-Weight-Tracker/assets/60907784/c3657f59-b6a5-424a-9422-dbc22aa590c0)
+
 
 > **Warning**
 Data is wiped when computer is shutdown/restarted make sure to download data when done
@@ -8,11 +9,21 @@ Data is wiped when computer is shutdown/restarted make sure to download data whe
 ## Download Data
 Downloads the data that has been inputed into a JSON file
 
-## Clear Data
+## Clear All Data
 Clears all data entered and removes the saved localStorage data that was created
 
 ## Upload Data
-Upload a JOSN file of previously entered data
+Upload a JSON file of previously entered data
+
+## Progress Tracker
+This will show 2 graphs showing overall progression for your weight and calories. The top graph shows weight the target weight can be set at the bottom of the page this will also set the max y-axis to 5 lbs above your target weight.
+The minimum weight value will the the bottom of the y-axis, I recommend 2-3 lbs below your minimum weight. 
+
+## Weight/Calorie Tables
+These allow you to individually edit all values that you have input. 
+
+## Avoid Data Wipe
+I would recommend using a free hosting site to use this. I use netlify.com, all you have to do is drag and drop the build folder into where it asks for the website output.
 
 <br/><br/>
 <br/><br/>
