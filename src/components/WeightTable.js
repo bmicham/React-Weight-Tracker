@@ -64,7 +64,7 @@ const WeightTable = () => {
                 {selectedWeightIndex === index ? (
                   <input
                     type="number"
-                    className="InputField DarkInput"
+                    className="inputfield-weight"
                     value={currentWeight}
                     onChange={handleWeightChange}
                   />

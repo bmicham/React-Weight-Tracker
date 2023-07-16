@@ -64,7 +64,7 @@ const CalorieTable = () => {
                 {selectedCalorieIndex === index ? (
                   <input
                     type="number"
-                    className="InputField DarkInput"
+                    className="inputfield-calories"
                     value={currentCalories}
                     onChange={handleCalorieChange}
                   />

@@ -17,8 +17,8 @@ function useLocalStorage(key, initialValue) {
 const ProgressTracker = () => {
   const [savedWeights] = useLocalStorage("weights", []);
   const [savedCalories] = useLocalStorage("calories", []);
-  const [targetWeight, setTargetWeight] = useState(210);
-  const [minYAxis, setMinYAxis] = useState(170);
+  const [targetWeight, setTargetWeight] = useLocalStorage("targetWeight", 210);
+  const [minYAxis, setMinYAxis] = useLocalStorage("minYAxis", 170);
   const chartWeightRef = useRef(null);
   const chartCalorieRef = useRef(null);
 
@@ -61,7 +61,7 @@ const ProgressTracker = () => {
         },
       },
       yaxis: {
-        min: minYAxis, // Use the minYAxis state value
+        min: minYAxis,
         max: targetWeight + 5,
         labels: {
           style: {
@@ -82,7 +82,7 @@ const ProgressTracker = () => {
       annotations: {
         yaxis: [
           {
-            y: targetWeight, // Use the targetWeight state value
+            y: targetWeight,
             borderColor: "red",
             label: {
               borderColor: "red",
@@ -124,7 +124,7 @@ const ProgressTracker = () => {
       stroke: {
         curve: "smooth",
         width: "4",
-        colors: "#1d89ef",
+        colors: "#1def90",
       },
       chart: {
         type: "line",
@@ -167,6 +167,14 @@ const ProgressTracker = () => {
         position: "top",
         horizontalAlign: "center",
       },
+      markers: {
+        colors: ["#1def90"],
+      },
+      dataLabels: {
+        style: {
+          colors: ["#1def90"],
+        },
+      },
     };
 
     chartCalorieRef.current = new ApexCharts(document.getElementById("calorie-chart"), chartCalorieOptions);
@@ -174,20 +182,29 @@ const ProgressTracker = () => {
     return () => {
       chartCalorieRef.current.destroy();
     };
-  },
-  [savedCalories]);
-
-  
+  }, [savedCalories]);
 
   return (
     <div>
       <div id="weight-chart" />
       <div id="calorie-chart" />
       <div className="progresstracker">
-        <h2 className="targetheader">Target Weight:</h2>
-        <input className="inputtargetweight" type="number" value={targetWeight} onChange={(e) => setTargetWeight(parseInt(e.target.value))} placeholder="Target Weight"/>
-        <h2 className="targetmin">Minimum Weight Graph Value:</h2>
-        <input className="inputmin" type="number" value={minYAxis} onChange={(e) => setMinYAxis(parseInt(e.target.value))} placeholder="Min Y-Axis"/>
+        <h3 className="targetheader">Target Weight:</h3>
+        <input
+          className="inputtargetweight"
+          type="number"
+          value={targetWeight}
+          onChange={(e) => setTargetWeight(parseInt(e.target.value))}
+          placeholder="Target Weight"
+        />
+        <h3 className="targetmin">Minimum Weight Graph Value:</h3>
+        <input
+          className="inputmin"
+          type="number"
+          value={minYAxis}
+          onChange={(e) => setMinYAxis(parseInt(e.target.value))}
+          placeholder="Min Y-Axis"
+        />
       </div>
     </div>
   );
