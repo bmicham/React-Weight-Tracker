@@ -1,5 +1,3 @@
-TODO: Update Readme, change screenshot, finish calorie and table edit features
-
 ![Preview](https://github.com/bmicham/React-Weight-Tracker/assets/60907784/c3657f59-b6a5-424a-9422-dbc22aa590c0)
 
 
